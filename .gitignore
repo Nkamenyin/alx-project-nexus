@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.py.class
+
+# Environment
+.env
+*.env
+venv/
+env/
+ENV/
+.env.local
+.env.production
+.env.development
+
+# Django stuff
+*.log
+db.sqlite3
+media/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Byte-compiled / C extensions
+*.so
+
+# Mac / Windows
+.DS_Store
+Thumbs.db
