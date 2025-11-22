@@ -26,21 +26,16 @@ It emphasizes clean architecture, API development, DevOps fundamentals, and real
 - DRF (Django Rest Framework)
 - Serializers, viewsets, permissions
 - Pagination, throttling, filtering
-- API documentation (Swagger/OpenAPI)
+- API documentation (Swagger)
 
-4. GraphQL
-- GraphQL schemas, types, and resolvers
-- Mutations and queries
-- Integrating GraphQL with Django (Graphene)
-- When to choose GraphQL over REST
 
-5. Docker
+4. Docker
 - Container fundamentals
 - Writing Dockerfiles
 - Using docker-compose for multi-service architectures
 - Running Django, Postgres, Redis in containers
 
-6. CI/CD
+5. CI/CD
 - Version control workflows (Git, GitHub)
 - Automated testing pipelines
 - Deployment pipelines using GitHub Actions/GitLab CI
@@ -139,3 +134,54 @@ Used separate dev and production settings
 - Value of writing tests before deploying
 - Gained confidence in reading documentation
 - Learned how to think like an engineer—design first, code second
+
+
+
+
+alx_project_nexus/
+│
+├── manage.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── alx_project_nexus/                       # Main Django project settings
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│
+├── accounts/                                # User Authentication App
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── forms.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── templates/
+│   │   └── accounts/
+│   │       ├── login.html
+│   │       ├── register.html
+│   │       └── logout.html
+│   └── migrations/
+│       └── __init__.py
+│
+└── store/                                   # Store + Products + Categories
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── views.py
+    ├── urls.py
+    ├── templates/
+    │   └── store/
+    │       ├── home.html
+    │       ├── products/
+    │       │   ├── product_list.html
+    │       │   └── product_detail.html
+    │       └── categories/
+    │           └── category_list.html
+    └── migrations/
+        └── __init__.py

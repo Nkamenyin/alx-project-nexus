@@ -1,0 +1,11 @@
+<h1>Welcome to Our Store</h1>
+<h2>Featured Products</h2>
+<ul>
+{% for product in products %}
+    <li>
+        <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a> - ${{ product.price }}
+    </li>
+{% empty %}
+    <li>No products available.</li>
+{% endfor %}
+</ul>
