@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import RegisterUserView
 
-#USer End points
+#USer Endpoints
 app_name = "accounts"
 
 urlpatterns = [
