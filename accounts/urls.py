@@ -1,9 +1,10 @@
 from django.urls import path
-from . import views
+from .views import RegisterUserView
+
+#USer End points
+app_name = "accounts"
 
 urlpatterns = [
-    path('login/', views.login_user, name='login'),
-    path('register/', views.register_user, name='register'),
-    #path('logout/', views.logout_user, name='logout'),
-    #path('profile/', views.profile, name='profile'),
+    path('register/', RegisterUserView.as_view(), name='register'),
+    # login is via JWT token endpoint at the project level (/api/token/)
 ]

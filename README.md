@@ -1,187 +1,145 @@
-### ProDev Backend Engineering Program
+# ALX PROJECT NEXUS
 
-# Overview 
-
-The ProDev Backend Engineering Program is designed to build strong, industry-ready backend developers by focusing on core backend concepts, modern tools, and hands-on project development.
-It emphasizes clean architecture, API development, DevOps fundamentals, and real-world engineering practices.
+An e-commerce web application built with Django and PostgreSQL.  
+Allows users to browse products, manage carts, place orders, and handle payments securely.
 
 
-### Key Technologies Covered
+## Project Overview
 
-1. Python
-- Advanced Python syntax and OOP
-- Modules, packages, and virtual environments
-- Error handling, testing (pytest/unittest), and logging
+ALX Project Nexus is a Django-based e-commerce platform featuring:
 
-2. Django
+- User authentication and profiles
+- Product catalog with categories
+- Shopping cart and checkout
+- Order management and tracking
+- PostgreSQL database integration
+- API endpoints for front-end or mobile integration
 
-- Django MVC/MVT architecture
-- Models, Views, Templates & ORM
-- Authentication/Authorization
-- Middleware and signals
-- Building scalable Django apps
+---
 
-3. REST APIs
-- Designing clean API endpoints
-- DRF (Django Rest Framework)
-- Serializers, viewsets, permissions
-- Pagination, throttling, filtering
-- API documentation (Swagger)
+## Features
 
+- User registration and login
+- Profile management with optional profile picture
+- CRUD operations for products and categories
+- Shopping cart system
+- Order placement and tracking
+- Payment simulation
+- Admin panel for managing products, categories, and users
 
-4. Docker
-- Container fundamentals
-- Writing Dockerfiles
-- Using docker-compose for multi-service architectures
-- Running Django, Postgres, Redis in containers
+---
 
-5. CI/CD
-- Version control workflows (Git, GitHub)
-- Automated testing pipelines
-- Deployment pipelines using GitHub Actions/GitLab CI
-- Environment variables & secrets management
+## Technologies
 
-### Important Backend Development Concepts
+- Python 3.11.4
+- Django 5.2.8
+- Django REST Framework 3.16.1
+- PostgreSQL (psycopg3 / psycopg2-binary)
+- Pillow 12.0.0 (image handling)
+- drf-yasg 1.21.11 (API documentation)
+- django-environ 0.12.0 & python-decouple 3.8 (environment configuration)
+- inflection 0.5.1
 
-1. Database Design
-- Relational database modeling
-- Normalization and indexing
-- Designing entity relationships (1–1, 1–many, many–many)
-- Using Postgres effectively with Django ORM
+---
 
-2. Asynchronous Programming
-- Intro to async/await in Python
-- When async is beneficial in backend systems
-- Using asynchronous tasks (Celery + Redis)
-- Handling background jobs and queue systems
+## Installation
 
-4. Caching Strategies
-- Improving API performance using cache
-- Redis as a caching layer
-- Low-level vs. per-view vs. template caching
-- Cache invalidation strategies
-- Designing cache-aware endpoints
+1. Clone the repository:
 
-### Challenges Faced and Solutions Implemented
-1. Managing Complex Django Queries
+```bash
+git clone https://github.com/Nkamenyin/alx-project-nexus.git
+cd alx-project-nexus
+Create a virtual environment and activate it:
 
-Challenge: Slow API responses due to inefficient ORM queries.
-Solution:
-- Added select_related and prefetch_related
-- Added database indexes
-- Used raw SQL for critical performance paths
+bash
+Copy code
+python -m venv venv
+# Linux / Mac
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
+Install dependencies:
 
-2. Structuring Large Django Projects
+bash
+Copy code
+pip install -r requirements.txt
+Configure PostgreSQL database in settings.py:
 
-Challenge: Difficulty maintaining project organization as it grew.
-Solution:
-- Adopted modular app structure
-- Implemented service layers & utilities
-- Improved documentation and code comments
+python
+Copy code
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alx_project_nexus',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+Apply migrations:
 
-3. API Performance Issues
+bash
+Copy code
+python manage.py makemigrations
+python manage.py migrate
+Create a superuser:
 
-Challenge: High response times for frequently accessed endpoints.
-Solution:
-- Introduced Redis caching
-- Implemented pagination
-- Added rate limiting and throttling in DRF
+bash
+Copy code
+python manage.py createsuperuser
+Start the development server:
 
-4. Working with Docker for the First Time
+bash
+Copy code
+python manage.py runserver
+Usage
+Open your browser at http://127.0.0.1:8000
 
-Challenge: Containers failing due to networking & dependency issues.
-Solution:
-- Used docker-compose for service orchestration
-- Defined health checks, environment files
-- Streamlined Dockerfile to reduce build time
+Register a new user or log in
 
-5. CI/CD Pipeline Errors
+Browse products, add items to cart, and place orders
 
-Challenge: Failing builds due to incorrect configurations.
-Solution:
+Access the admin panel at /admin for management
 
-Used separate dev and production settings
-- Installed required dependencies in pipeline
-- Ensured tests run before deploy steps
+Database Schema
+The project uses PostgreSQL with the following main tables:
 
+User / CustomerProfile
 
-### Best Practices and Personal Takeaways
+Category / Product / ProductImage
 
-1. Coding and Architecture
-- Write modular, testable, readable code
-- Follow SOLID principles where applicable
-- Use environment variables for configuration
-- Keep business logic separate from views/controllers
+Cart / CartItem
 
-2. API Development
-- Always version your APIs
-- Validate input strictly
-- Document APIs for easy teamwork
-- Prefer pagination for large datasets
+Order / OrderItem / Payment
 
-3. Database
-- Optimize queries early
-- Avoid N+1 queries
-- Use migrations responsibly and review changes carefully
+Address
 
-4. DevOps & Deployment
-- Automate as much as possible (tests, linting, deployment)
-- Use Docker for consistent dev environments
-- Monitor logs and errors using proper logging strategies
+ERD Diagram: View Here
 
-5. Personal Growth
-- Learn the importance of debugging systematically
-- Value of writing tests before deploying
-- Gained confidence in reading documentation
-- Learned how to think like an engineer—design first, code second
+API Endpoints
 
+Endpoint	Method	Description
+/api/login/	POST	Log in user
+/api/register/	POST	Register new user
+/api/products/	GET	List all products
+/api/products/<id>/	GET	Product details
+/api/cart/	POST	Add item to cart
+/api/orders/	GET	List user orders
 
+Contributing
+Contributions are welcome!
 
+Fork the repository
 
-alx_project_nexus/
-│
-├── manage.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-│
-├── alx_project_nexus/                       # Main Django project settings
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│
-├── accounts/                                # User Authentication App
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── forms.py
-│   ├── views.py
-│   ├── urls.py
-│   ├── templates/
-│   │   └── accounts/
-│   │       ├── login.html
-│   │       ├── register.html
-│   │       └── logout.html
-│   └── migrations/
-│       └── __init__.py
-│
-└── store/                                   # Store + Products + Categories
-    ├── __init__.py
-    ├── admin.py
-    ├── apps.py
-    ├── models.py
-    ├── views.py
-    ├── urls.py
-    ├── templates/
-    │   └── store/
-    │       ├── home.html
-    │       ├── products/
-    │       │   ├── product_list.html
-    │       │   └── product_detail.html
-    │       └── categories/
-    │           └── category_list.html
-    └── migrations/
-        └── __init__.py
+Create a branch (git checkout -b feature-name)
+
+Make changes and commit (git commit -m "Add feature")
+
+Push to the branch (git push origin feature-name)
+
+Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -1,20 +1,34 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from rest_framework import generics, filters
+from .models import Product, Category
+from .serializers import ProductSerializer, CategorySerializer
+from rest_framework.pagination import PageNumberPagination
 
-def home(request):
-    products = Product.objects.filter(is_active=True)[:10]  # show 10 products on homepage
-    return render(request, 'store/home.html', {'products': products})
+#views for API Only
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
-def category_list(request):
-    categories = Category.objects.all()
-    return render(request, 'store/categories/category_list.html', {'categories': categories})
 
-def category_products(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-    products = category.products.filter(is_active=True)
-    return render(request, 'store/products/product_list.html', {'category': category, 'products': products})
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug)
-    return render(request, 'store/products/product_detail.html', {'product': product})
 
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ProductListCreateView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['price', 'created_at']
+    search_fields = ['name', 'description']
+
+
+class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
