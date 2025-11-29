@@ -1,23 +1,17 @@
-# Base Python image
-FROM python:3.13-slim
+FROM python:3.11
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Set work directory
+
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip wheel setuptools
 
-# Copy project files
-COPY . /app/
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port
+COPY . .
+
 EXPOSE 8000
-
-# Run Gunicorn server
-CMD ["gunicorn", "alx_project_nexus.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+CMD ["gunicorn", "alx_project_nexus.wsgi:application", "--bind", "0.0.0.0:8000"]
