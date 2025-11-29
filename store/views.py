@@ -9,17 +9,17 @@ from drf_yasg.utils import swagger_auto_schema
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 
-# -------------------------------
+
 # Pagination
-# -------------------------------
+
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 100
 
-# -------------------------------
+
 # CATEGORY VIEWS
-# -------------------------------
+
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -92,9 +92,9 @@ class CategoryDeleteView(generics.DestroyAPIView):
         return super().delete(request, *args, **kwargs)
 
 
-# -------------------------------
+
 # PRODUCT VIEWS
-# -------------------------------
+
 @method_decorator(cache_page(60*15), name='dispatch')  # cache for 15 minutes
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.filter(is_active=True, stock__gt=0)
