@@ -29,16 +29,35 @@ ALX Project Nexus is a Django-based e-commerce platform featuring:
 
 ---
 
-## Technologies
+## Technologies & Tools
 
-- Python 3.11.4
-- Django 5.2.8
-- Django REST Framework 3.16.1
-- PostgreSQL (psycopg3 / psycopg2-binary)
-- Pillow 12.0.0 (image handling)
-- drf-yasg 1.21.11 (API documentation)
-- django-environ 0.12.0 & python-decouple 3.8 (environment configuration)
-- inflection 0.5.1
+- **Python 3.11.4** – programming language for backend logic
+- **Django 5.2.8** – web framework
+- **Django REST Framework 3.16.1** – REST API development
+- **PostgreSQL** – relational database
+  - `psycopg3`, `psycopg-binary`, `psycopg2-binary` – PostgreSQL adapters
+- **Redis 7.1.0** – caching and Celery broker
+- **django-redis 6.0.0** – Django cache integration with Redis
+- **Celery** – asynchronous task queue (if used)
+- **Pillow 12.0.0** – image handling
+- **drf-yasg 1.21.11** – API documentation (Swagger/OpenAPI)
+- **djangorestframework-simplejwt 5.5.1** – JWT authentication
+- **django-environ 0.12.0** & **python-decouple 3.8** – environment configuration
+- **inflection 0.5.1** – string conversion utilities (camelize, underscore, pluralize)
+- **asgiref 3.10.0** – ASGI support for Django
+- **certifi 2025.11.12** – SSL certificates
+- **charset-normalizer 3.4.4** – encoding handling
+- **idna 3.11** – international domain names / URL encoding
+- **packaging 25.0** – version parsing
+- **pytz 2025.2** & **tzdata 2025.2** – timezone support
+- **PyJWT 2.10.1** – JWT handling
+- **pywin32 311** – Windows extensions
+- **PyYAML 6.0.3** – YAML parsing
+- **requests 2.32.5** – HTTP requests
+- **sqlparse 0.5.3** – SQL formatting
+- **uritemplate 4.2.0** – URI template handling
+- **docker 7.1.0** – Python client for Docker integration
+
 
 ---
 
@@ -70,7 +89,7 @@ Copy code
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alx_project_nexus',
+        'NAME': 'alx_project_nexus_db',
         'USER': 'your_db_user',
         'PASSWORD': 'your_db_password',
         'HOST': 'localhost',
