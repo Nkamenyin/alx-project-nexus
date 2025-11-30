@@ -19,7 +19,7 @@ psycopg2-binary==2.9.11
 PyJWT==2.10.1
 python-decouple==3.8
 pytz==2025.2
-pywin32==311
+pywin32==311; platform_system=="Windows"
 PyYAML==6.0.3
 redis==7.1.0
 requests==2.32.5
