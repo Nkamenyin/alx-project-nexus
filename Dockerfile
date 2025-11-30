@@ -11,7 +11,8 @@ RUN pip install --upgrade pip wheel setuptools
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+
+COPY .env .env
 
 EXPOSE 8000
 CMD ["gunicorn", "alx_project_nexus.wsgi:application", "--bind", "0.0.0.0:8000"]
