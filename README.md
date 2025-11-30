@@ -134,17 +134,40 @@ Order / OrderItem / Payment
 
 Address
 
-ERD Diagram: View Here
+### ERD Diagram  
+[**View Here**](https://drive.google.com/file/d/11xI2eXLY5Hc-NfuPPWPswK7u7wbjTXwe/view?usp=sharing)
 
 API Endpoints
 
-Endpoint	Method	Description
-/api/login/	POST	Log in user
-/api/register/	POST	Register new user
-/api/products/	GET	List all products
-/api/products/<id>/	GET	Product details
-/api/cart/	POST	Add item to cart
-/api/orders/	GET	List user orders
+#Authentication & User Accounts
+Method	Endpoint	Description
+POST	/api/register/	Register a new user
+POST	/api/token/	Obtain JWT access & refresh tokens
+POST	/api/token/refresh/	Refresh access token
+
+#Category API Endpoints
+#Public Endpoints
+Method	Endpoint	Description
+GET	/api/categories/	List all categories
+GET	/api/categories/<int:pk>/	Retrieve a single category
+
+#Admin Endpoints
+Method	Endpoint	Description
+POST	/api/categories/create/	Create a new category
+PUT	/api/categories/<int:pk>/update/	Update category details
+DELETE	/api/categories/<int:pk>/delete/	Delete a category
+
+#Product API Endpoints
+#Public Endpoints
+Method	Endpoint	Description
+GET	/api/products/	List all products (cached, searchable, paginated)
+GET	/api/products/<int:pk>/	Retrieve a single product
+
+#Admin Endpoints
+Method	Endpoint	Description
+POST	/api/products/create/	Create a new product
+PUT	/api/products/<int:pk>/update/	Update product details
+DELETE	/api/products/<int:pk>/delete/	Delete a product
 
 Contributing
 Contributions are welcome!
