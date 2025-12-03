@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'alx_project_nexus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': 'alxProjectNexus',  # <-- comma added
+        'USER': 'va',               # config('DB_USER'),
+        'PASSWORD': 'va',           # config('DB_PASSWORD'),
+        'HOST': 'nexus-postgres',   # config('DB_HOST'),
+        'PORT': '5432',             # config('DB_PORT'),
     }
 }
 
