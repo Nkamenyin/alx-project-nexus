@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   web:
     build: .
@@ -7,13 +9,38 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - .env   # <-- reads sensitive info from here
     depends_on:
+      - db
       - redis
     command: gunicorn alx_project_nexus.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    networks:
+      - nexus-network
+
+  db:
+    image: postgres:16
+    container_name: nexus-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nexus-network
 
   redis:
     image: redis:7
     container_name: nexus-redis
     ports:
       - "6379:6379"
+    networks:
+      - nexus-network
+
+networks:
+  nexus-network:
+
+volumes:
+  postgres_data:
