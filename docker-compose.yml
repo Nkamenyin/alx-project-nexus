@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "5433:5432"
     env_file:
       - .env   # <-- reads sensitive info from here
     depends_on:
