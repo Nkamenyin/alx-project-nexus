@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
-DEBUG = False  # True for local development only
+DEBUG = True  # True for local development only
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
@@ -93,22 +93,20 @@ WSGI_APPLICATION = 'alx_project_nexus.wsgi.application'
 
 
 # DATABASE
-# Render / Docker Safe Defaults
+# DATABASE (Docker Ready)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alxProjectNexus',  # <-- comma added
-        'USER': 'va',               # config('DB_USER'),
-        'PASSWORD': 'va',           # config('DB_PASSWORD'),
-        'HOST': 'nexus-postgres',   # config('DB_HOST'),
-        'PORT': '5432',             # config('DB_PORT'),
+        'NAME': config('DB_NAME', default='alxProjectNexus'),
+        'USER': config('DB_USER', default='va'),
+        'PASSWORD': config('DB_PASSWORD', default='va'),
+        'HOST': config('DB_HOST', default='db'),  # Docker service name
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
-
-# REDIS CACHE
-# Auto detects production Redis URL
-REDIS_URL = config("REDIS_URL", default="redis://127.0.0.1:6379/1")
+# REDIS CACHE (Docker Ready)
+REDIS_URL = config("REDIS_URL", default="redis://redis:6379/1")  # Docker service name
 
 CACHES = {
     "default": {
@@ -119,6 +117,7 @@ CACHES = {
         }
     }
 }
+
 
 
 # PASSWORD VALIDATION

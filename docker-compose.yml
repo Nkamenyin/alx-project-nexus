@@ -7,9 +7,9 @@ services:
     volumes:
       - .:/app
     ports:
-      - "5433:5432"
+      - "8000:8000"      # Expose Gunicorn properly
     env_file:
-      - .env   # <-- reads sensitive info from here
+      - .env
     depends_on:
       - db
       - redis
@@ -25,7 +25,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5433:5432"
+      - "5433:5432"      # Expose Postgres to HOST machine ONLY
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
